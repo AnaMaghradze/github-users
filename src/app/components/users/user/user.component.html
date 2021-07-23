@@ -1,0 +1,16 @@
+<div class="user" [ngClass]="{'list-view' : view == 'list', 'grid-view' : view == 'grid'}">
+  <div class="user-avatar">
+    <img [src]="user.avatar_url" alt="Avatar">
+  </div>
+  <div class="user-info">
+    <div>{{ user.login }}</div>
+    <div>{{ user.type }}</div>
+  </div>
+  <div class="user-repos">
+    <div>User Repos</div>
+    <ng-container *ngFor="let repo of [1,2,3]">
+      <a *ngIf="repo" [href]="'#'">{{ user.repos_url }}</a>
+    </ng-container>
+  </div>
+</div>
+

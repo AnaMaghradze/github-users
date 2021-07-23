@@ -1,0 +1,18 @@
+<div class="list-grid-view">
+  <div class="header">
+    <div>
+      <ng-content select="[header]"></ng-content>
+    </div>
+    <div>
+      <button (click)="viewList()">
+        <i class="las la-th-list"></i>
+      </button>
+      <button (click)="viewGrid()">
+        <i class="las la-th-large"></i>
+      </button>
+    </div>
+  </div>
+  <div class="content" [ngClass]="{'list-view' : view == 'list', 'grid-view' : view == 'grid'}">
+    <ng-content select="[content]"></ng-content>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+@import "../../../styles/index";
+
+:host{
+  display: block;
+  width: 100%;
+}
+
+.list-grid-view{
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-width: fit-content;
+}
+
+.header{
+  width: 100%;
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include text-style(20px, 500);
+  text-transform: capitalize;
+  border-bottom: 2px solid black;
+
+  button{
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    border: none;
+    i{
+      font-size: 30px;
+    }
+    i.la-th-list{
+      font-size: 32px;
+    }
+  }
+}
+
+.content{
+  min-width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+
+//.list-view{
+//}
+//
+//.grid-view{
+//}

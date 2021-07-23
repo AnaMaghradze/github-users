@@ -1,0 +1,13 @@
+<div class="users">
+  <div class="search-section">
+    <app-search-bar></app-search-bar>
+  </div>
+  <div class="users-section">
+    <app-list-grid-view>
+      <ng-container header>GitHub Most Popular Users</ng-container>
+      <ng-container content *ngFor="let user of users | async">
+        <app-user #listItem [view]="'list'" [user]="user"></app-user>
+      </ng-container>
+    </app-list-grid-view>
+  </div>
+</div>
