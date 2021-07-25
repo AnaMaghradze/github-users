@@ -3,16 +3,17 @@
     <div>
       <ng-content select="[header]"></ng-content>
     </div>
-    <div>
-      <button (click)="viewList()">
-        <i class="las la-th-list"></i>
-      </button>
-      <button (click)="viewGrid()">
-        <i class="las la-th-large"></i>
-      </button>
-    </div>
+    <ul>
+      <li (click)="viewList()"><i class="las la-th-list" title="List View"></i></li>
+      <li (click)="viewGrid()"><i class="las la-th-large" title="Grid View"></i></li>
+    </ul>
   </div>
   <div class="content" [ngClass]="{'list-view' : view == 'list', 'grid-view' : view == 'grid'}">
-    <ng-content select="[content]"></ng-content>
+    <div>
+      <ng-content select="[leftContent]"></ng-content>
+    </div>
+    <div>
+      <ng-content select="[rightContent]"></ng-content>
+    </div>
   </div>
 </div>

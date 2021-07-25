@@ -15,7 +15,7 @@ export class GhUserService {
   }
 
   getUser(username: string): Observable<User> {
-    return this.http.get<User>(`${this.url}/users/${username}`).pipe(
+    return this.http.get<User>(`${this.url}users/${username}`).pipe(
       retry(1),
       catchError(this.handleError)
     )
