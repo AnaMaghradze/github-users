@@ -1,3 +1,6 @@
+import {UserRepo} from "./user-repo.interface";
+import {UserOrg} from "./user-org.interface";
+
 export interface User {
   "login": string,
   "id": number,
@@ -42,5 +45,7 @@ export interface User {
     "space": number,
     "private_repos": number,
     "collaborators": number
-  }
+  },
+  "repos"?: UserRepo[];
+  "orgs"?: UserOrg[];
 }

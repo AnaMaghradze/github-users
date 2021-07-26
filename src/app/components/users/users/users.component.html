@@ -4,8 +4,11 @@
   </div>
   <div class="users-section">
     <app-list-grid-view>
-      <ng-container header>GitHub Most Popular Users</ng-container>
-      <ng-container content *ngFor="let user of users | async">
+      <ng-container header>GitHub Most Popular Users </ng-container>
+      <ng-container leftContent *ngFor="let user of users$ | async | slice:0: 5">
+        <app-user #listItem [view]="'list'" [user]="user"></app-user>
+      </ng-container>
+      <ng-container rightContent *ngFor="let user of users$ | async | slice:5: 10">
         <app-user #listItem [view]="'list'" [user]="user"></app-user>
       </ng-container>
     </app-list-grid-view>

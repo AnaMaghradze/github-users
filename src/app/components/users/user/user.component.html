@@ -3,14 +3,15 @@
     <img [src]="user.avatar_url" alt="Avatar">
   </div>
   <div class="user-info">
-    <div>{{ user.login }}</div>
+    <a [routerLink]="['/users', user.login]">{{ user.name }}</a>
     <div>{{ user.type }}</div>
   </div>
   <div class="user-repos">
     <div>User Repos</div>
-    <ng-container *ngFor="let repo of [1,2,3]">
-      <a *ngIf="repo" [href]="'#'">{{ user.repos_url }}</a>
+    <ng-container *ngFor="let repo of user.repos ">
+      <a *ngIf="repo" [href]="repo.html_url" target="_blank">{{ repo.name }}</a>
     </ng-container>
+    <p *ngIf="!user.repos?.length"> No repos to display </p>
   </div>
 </div>
 

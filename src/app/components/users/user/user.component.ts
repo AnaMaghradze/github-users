@@ -1,5 +1,6 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../../shared/models/user.interface";
+import {GhUserService} from "../../../shared/services/gh-user.service";
 
 @Component({
   selector: 'app-user',
@@ -10,9 +11,7 @@ export class UserComponent implements OnInit {
   @Input() user!: User;
   @Input() view: "list" | "grid" = "list";
 
-  constructor() { }
+  constructor(private userService: GhUserService) { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -10,7 +10,6 @@ import { UserDetailsComponent } from './components/users/user-details/user-detai
 import {HttpClientModule} from "@angular/common/http";
 import { ListGridViewComponent } from './components/list-grid-view/list-grid-view.component';
 import { UsersComponent } from './components/users/users/users.component';
-import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +19,7 @@ import { TestComponent } from './components/test/test.component';
     LayoutComponent,
     UserDetailsComponent,
     ListGridViewComponent,
-    UsersComponent,
-    TestComponent
+    UsersComponent
   ],
   imports: [
     BrowserModule,

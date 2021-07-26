@@ -18,13 +18,11 @@ export class ListGridViewComponent implements OnInit {
   viewList() {
     this.view = 'list';
     this.listItems.map((item) => item.view = this.view);
-    //this.listItems.forEach((item) => console.log(item));
   }
 
   viewGrid() {
     this.view = 'grid';
     this.listItems.map((item) => item.view = this.view);
-    //this.listItems.forEach((item) => console.log(item));
   }
 
 }
