@@ -1,11 +1,12 @@
 // colors
 
 // fonts
+$poppins: 'Poppins';
 
 // mixins
-@mixin text-style($font-size, $font-weight: 400, $color: black,  $font-family: 'monospace') {
+@mixin text-style($font-size, $font-weight: 400, $color: black,  $font-family: $poppins) {
   font-size: $font-size;
   font-weight: $font-weight;
-  font-family: $font-family;
+  font-family: $font-family, 'sans-serif';
   color: $color;
 }

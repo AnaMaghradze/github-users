@@ -6,6 +6,7 @@
 }
 
 .user {
+  width: 100%;
   padding: 20px;
   //min-width: 500px;
   border-radius: 5px;
@@ -24,19 +25,13 @@
 .user-info {
   padding: 10px;
   width: 50%;
-
-  div:first-child {
-    @include text-style(20px, 600, black);
-    max-width: 300px; /// ????????????????
-    text-overflow: ellipsis;
-    overflow-x: hidden;
-    white-space: nowrap;
-    padding: 5px 0;
+  a{
+    padding-bottom: 10px;
+    @include text-style(20px, 500);
+    word-break: break-all;
   }
-
-  div:last-child {
-    @include text-style(16px, 500, black);
-    padding: 10px 0;
+  div {
+    @include text-style(16px, 500);
   }
 }
 

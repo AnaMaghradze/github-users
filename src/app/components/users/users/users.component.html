@@ -1,16 +1,23 @@
 <div class="users">
-  <div class="search-section">
-    <app-search-bar></app-search-bar>
+  <div class="search-wrapper">
+    <app-search (onSearch)="findUsers($event)"></app-search>
   </div>
-  <div class="users-section">
-    <app-list-grid-view>
-      <ng-container header>GitHub Most Popular Users </ng-container>
-      <ng-container leftContent *ngFor="let user of users$ | async | slice:0: 5">
-        <app-user #listItem [view]="'list'" [user]="user"></app-user>
-      </ng-container>
-      <ng-container rightContent *ngFor="let user of users$ | async | slice:5: 10">
-        <app-user #listItem [view]="'list'" [user]="user"></app-user>
-      </ng-container>
-    </app-list-grid-view>
+  <div class="users-wrapper">
+    <div class="header">
+      <h2>GitHub Most Popular Users </h2>
+      <ul>
+        <li (click)="viewList()" title="List View">
+          <span class="material-icons-round list" [ngClass]="{'active' : view == 'list'}">view_list</span>
+        </li>
+        <li (click)="viewGrid()" title="Grid View">
+          <span class="material-icons-round grid" [ngClass]="{'active' : view == 'grid'}">grid_view</span>
+        </li>
+      </ul>
+    </div>
+    <div class="content" [ngClass]="{'list-view' : view == 'list', 'grid-view' : view == 'grid'}">
+      <div *ngFor="let user of users$ | async ">
+        <app-user [view]="'list'" [user]="user"></app-user>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,0 +1,73 @@
+@import "../../../styles/index";
+
+:host {
+  display: inline-block;
+}
+
+.search{
+  width: 100%;
+  min-width: 250px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid gray;
+  border-bottom-right-radius: 3px;
+
+  input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    line-height: 20px;
+    @include text-style(16px, 500);
+  }
+
+  button {
+    padding: 10px 20px;
+    line-height: 20px;
+    border-bottom: none;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    cursor: pointer;
+    @include text-style(16px, 500);
+  }
+}
+
+.search-history {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  div {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    @include text-style(16px, 400);
+  }
+}
+
+p {
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  box-shadow: 5px 5px 17px -6px rgba(0, 0, 0, 0.66);
+  max-width: 150px;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+  transition: .3s;
+  cursor: pointer;
+
+  &:hover{
+    transform: translateY(-2px);
+  }
+}

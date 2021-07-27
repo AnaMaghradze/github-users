@@ -31,6 +31,9 @@
 .img-wrapper {
   grid-area: left;
   padding: 20px;
+  img{
+    border-radius: 3px;
+  }
 }
 
 .details-wrapper {
@@ -49,6 +52,10 @@ h3 {
   @include text-style(20px, 600);
 }
 
+p{
+  @include text-style(16px, 500, gray);
+}
+
 .title {
   width: 100%;
   padding: 10px 0;
@@ -62,6 +69,7 @@ a {
   word-break: break-all;
   display: flex;
   align-items: center;
+  @include text-style(16px, 600);
 }
 
 .org-link {
@@ -74,6 +82,7 @@ a {
   }
   span{
     padding: 0 20px;
+    @include text-style(16px, 600);
   }
 }
 
@@ -81,3 +90,4 @@ button {
   padding: 10px 20px;
   cursor: pointer;
 }
+

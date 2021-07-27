@@ -43,7 +43,7 @@ export class UserDetailsComponent implements OnInit {
     );
   }
 
-  gotoUsers(user: User) {
+  goToUsers(user: User) {
     const username = user ? user.login : null;
     this.router.navigate(['/users', {username: username}]);
   }

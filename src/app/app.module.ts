@@ -4,28 +4,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './components/users/user/user.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { UserDetailsComponent } from './components/users/user-details/user-details.component';
 import {HttpClientModule} from "@angular/common/http";
-import { ListGridViewComponent } from './components/list-grid-view/list-grid-view.component';
 import { UsersComponent } from './components/users/users/users.component';
+import {FormsModule} from "@angular/forms";
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    SearchBarComponent,
     LayoutComponent,
     UserDetailsComponent,
-    ListGridViewComponent,
-    UsersComponent
+    UsersComponent,
+    SearchComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

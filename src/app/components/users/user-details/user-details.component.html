@@ -1,11 +1,11 @@
 <div *ngIf="user$ | async as user" class="user-details">
-  <button (click)="gotoUsers(user)">Back</button>
+  <button (click)="goToUsers(user)">Back</button>
   <div>
     <h2 class="username-wrapper title">{{user.login}}</h2>
     <div class="img-wrapper"><img [src]="user.avatar_url" alt="Avatar"></div>
     <div class="details-wrapper">
       <div>
-        <h3>{{ user.name }}</h3>
+        <h3>{{ user.name || 'No name to display' }}</h3>
         <p>{{ user.type }}</p>
       </div>
       <div>
@@ -16,14 +16,14 @@
         <p *ngIf="!user.repos?.length"> No repos to display </p>
       </div>
       <div>
-        <h3 class="title">User Organisations</h3>
+        <h3 class="title">User Organizations</h3>
         <ng-container *ngFor="let org of user.orgs">
           <a *ngIf="org" [href]="org.avatar_url" target="_blank" class="org-link">
             <img [src]="org.avatar_url" alt="org-avatar">
             <span>{{ org.login }}</span>
           </a>
         </ng-container>
-        <p *ngIf="!user.orgs?.length" > No organizations to display </p>
+        <p *ngIf="!user.orgs?.length"> No organizations to display </p>
       </div>
     </div>
   </div>

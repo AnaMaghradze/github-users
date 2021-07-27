@@ -3,7 +3,7 @@
     <img [src]="user.avatar_url" alt="Avatar">
   </div>
   <div class="user-info">
-    <a [routerLink]="['/users', user.login]">{{ user.name }}</a>
+    <a [routerLink]="['/users', user.login]">{{ user.name || user.login }}</a>
     <div>{{ user.type }}</div>
   </div>
   <div class="user-repos">
