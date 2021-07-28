@@ -82,6 +82,25 @@
   }
 }
 
+@media screen and (max-width: 600px) {
+  .list-view {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    .user-avatar, .user-info {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .user-repos {
+      width: 100%;
+    }
+  }
+}
+
 .grid-view {
   width: 100%;
   display: flex;

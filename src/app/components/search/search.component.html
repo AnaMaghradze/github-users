@@ -6,7 +6,11 @@
   <div class="search-history" *ngIf="lastSearches.length">
     <div>Last Searches</div>
     <div>
-      <p *ngFor="let item of lastSearches" (click)="LastSearchedClicked(item)">{{item}}</p>
+      <p *ngFor="let item of lastSearches"
+         (click)="LastSearchedClicked(item)"
+         [title]="item">
+        {{item}}
+      </p>
     </div>
   </div>
 </div>

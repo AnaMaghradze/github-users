@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {GhUserService} from "../../../shared/services/gh-user.service";
-import {Observable} from "rxjs";
+import {combineLatest, Observable, of} from "rxjs";
 import {User} from "../../../shared/models/user.interface";
 import {concatMap, map, switchMap} from "rxjs/operators";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
@@ -14,6 +14,7 @@ import {UserRepo} from "../../../shared/models/user-repo.interface";
 })
 export class UserDetailsComponent implements OnInit {
   user$!: Observable<User>;
+  orgs$!: Observable<UserOrg[]>;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -22,24 +23,24 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.user$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
-        return this.userService.getUser(params.get('username')!).pipe(
-          // get repos for each user
-          concatMap((user: User) => this.userService.getUserRepos(user.login).pipe(
-            map((repos: UserRepo[]) => {
-              user.repos = repos.sort(
-                (a, b) => a.name.length - b.name.length).slice(0, 3);
-              return user;
-            })
-          )),
-          // get orgs for each user
-          concatMap((user: User) => this.userService.getUserOrgs(user.login).pipe(
-            map((orgs: UserOrg[]) => {
-              user.orgs = orgs.slice(0, 3);
-              return user;
-            })
-          )),
-        )
-      })
+        return this.userService.getUser(params.get('username')!)
+      }),
+      // get repos for each user
+      switchMap((user: User) => this.userService.getUserRepos(user.login).pipe(
+        map((repos: UserRepo[]) => {
+          user.repos = repos.sort(
+            (a, b) => a.name.length - b.name.length).slice(0, 3);
+          return user;
+        })
+      )),
+      // get orgs for each user
+      switchMap((user: User) => this.userService.getUserOrgs(user.login).pipe(
+        map((orgs: UserOrg[]) => {
+          this.orgs$ = combineLatest(orgs.slice(0, 3).map((org: UserOrg) => this.userService.getUserOrgDetails(org.login)));
+          user.orgs = orgs;
+          return user;
+        }),
+      ))
     );
   }
 

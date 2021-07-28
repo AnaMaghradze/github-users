@@ -16,7 +16,7 @@
     </div>
     <div class="content" [ngClass]="{'list-view' : view == 'list', 'grid-view' : view == 'grid'}">
       <div *ngFor="let user of users$ | async ">
-        <app-user [view]="'list'" [user]="user"></app-user>
+        <app-user [view]="view" [user]="user"></app-user>
       </div>
     </div>
   </div>

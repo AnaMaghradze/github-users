@@ -17,10 +17,10 @@
       </div>
       <div>
         <h3 class="title">User Organizations</h3>
-        <ng-container *ngFor="let org of user.orgs">
-          <a *ngIf="org" [href]="org.avatar_url" target="_blank" class="org-link">
+        <ng-container *ngFor="let org of orgs$ | async">
+          <a [href]="org.html_url" target="_blank" class="org-link">
             <img [src]="org.avatar_url" alt="org-avatar">
-            <span>{{ org.login }}</span>
+            <span>{{ org.name }}</span>
           </a>
         </ng-container>
         <p *ngIf="!user.orgs?.length"> No organizations to display </p>

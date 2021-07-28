@@ -1,7 +1,7 @@
 import {Component, ContentChildren, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {GhUserService} from "../../../shared/services/gh-user.service";
 import {User} from "../../../shared/models/user.interface";
-import {combineLatest, forkJoin, Observable} from "rxjs";
+import {combineLatest, forkJoin, Observable, of} from "rxjs";
 import {concatMap, map, switchMap, tap} from "rxjs/operators";
 import {UserRepo} from "../../../shared/models/user-repo.interface";
 import {Router} from "@angular/router";
@@ -21,13 +21,15 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.limit().subscribe()
+    this.userService.limit().subscribe() // DELETE !
     this.users$ = this.userService.pipeUsers(this.userService.getUsers());
   }
 
   findUsers(searchText: string) {
     this.users$ = this.userService.pipeUsers(this.userService.searchUsers(searchText).pipe(
-      map((resp: any) => resp.items)
+      map((resp: any) => resp.items),
+      // if no user found, return most popular users
+      switchMap((users: User[]) => users.length == 0 ? this.userService.getUsers() : of(users))
     )).pipe(
       tap(users => {
         // if you search for a specific user application redirects the user page

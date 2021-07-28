@@ -12,7 +12,7 @@ import {UserOrg} from "../models/user-org.interface";
 })
 export class GhUserService {
   readonly url = environment.URL;
-  loading: boolean = false; // instead u need an animation
+  loading: boolean = false;
 
   constructor(private http: HttpClient) {
   }

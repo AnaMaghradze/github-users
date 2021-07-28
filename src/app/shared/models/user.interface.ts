@@ -21,7 +21,7 @@ export interface User {
   "type": string,
   "site_admin": boolean,
   "name"?: string,
-  "company?": string,
+  "company"?: string,
   "blog"?: string,
   "location"?: string,
   "email"?: string,
@@ -48,4 +48,5 @@ export interface User {
   },
   "repos"?: UserRepo[];
   "orgs"?: UserOrg[];
+
 }

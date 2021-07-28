@@ -1,6 +1,6 @@
 @import "../../../../styles/index";
 
-:host{
+:host {
   display: block;
   width: 100%;
 }
@@ -54,7 +54,7 @@
           font-size: 35px;
         }
 
-        .active{
+        .active {
           color: gray;
         }
       }
@@ -88,6 +88,18 @@
     div {
       width: 45%;
       min-width: fit-content;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    .grid-view {
+      display: flex;
+      flex-direction: column;
+
+      div {
+        width: 100%;
+        min-width: fit-content;
+      }
     }
   }
 }

@@ -35,10 +35,11 @@ export class SearchComponent implements OnInit {
   }
 
   updateSearchHistory() {
-    if (this.lastSearches.length >= 3) {
+    if (this.lastSearches[this.lastSearches.length - 1] != this.searchText) {
+      if (this.lastSearches.length < 3) {
+        this.lastSearches.push(this.searchText);
+      }
       this.lastSearches.shift();
-    }
-    if (this.lastSearches[1] != this.searchText) {
       this.lastSearches.push(this.searchText);
     }
     localStorage.setItem("lastSearches", JSON.stringify(this.lastSearches));
