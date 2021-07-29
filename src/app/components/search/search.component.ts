@@ -1,8 +1,4 @@
 import {Component, OnInit, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
-import {Observable} from "rxjs";
-import {User} from "../../shared/models/user.interface";
-import {GhUserService} from "../../shared/services/gh-user.service";
-import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-search',
@@ -11,30 +7,29 @@ import {map} from "rxjs/operators";
 })
 export class SearchComponent implements OnInit {
   @ViewChild('searchInput') searchInput!: ElementRef;
-  @Output() onSearch = new EventEmitter();
+  @Output() search = new EventEmitter();
   lastSearches: string[] = [];
   searchText = '';
-
-  constructor() {
-  }
 
   ngOnInit(): void {
     this.lastSearches = JSON.parse(localStorage.getItem("lastSearches")!) || [];
   }
 
-  search() {
+  onSearch(): void {
     if (this.searchText.trim()) {
       this.updateSearchHistory();
-      this.onSearch.emit(this.searchText);
+      this.search.emit(this.searchText);
     }
   }
 
-  LastSearchedClicked(searchedText: string) {
+  // if user clicks one of searched usernames, paste it in input field
+  LastSearchedClicked(searchedText: string): void {
     this.searchText = searchedText;
     this.searchInput.nativeElement.focus();
   }
 
-  updateSearchHistory() {
+  // update array of last searches saved in localStorage
+  updateSearchHistory(): void {
     if (this.lastSearches[this.lastSearches.length - 1] != this.searchText) {
       if (this.lastSearches.length < 3) {
         this.lastSearches.push(this.searchText);

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {User} from "../models/user.interface";
 import {combineLatest, Observable, throwError} from "rxjs";
-import {catchError, concatMap, finalize, map, retry, switchMap, tap} from "rxjs/operators";
+import {catchError, finalize, map, retry, switchMap, tap} from "rxjs/operators";
 import {environment} from "../../../environments/environment";
 import {UserRepo} from "../models/user-repo.interface";
 import {UserOrg} from "../models/user-org.interface";
@@ -12,7 +12,7 @@ import {UserOrg} from "../models/user-org.interface";
 })
 export class GhUserService {
   readonly url = environment.URL;
-  loading: boolean = false;
+  loading = false;
 
   constructor(private http: HttpClient) {
   }
@@ -54,6 +54,7 @@ export class GhUserService {
     )
   }
 
+  // GET specific organization
   getUserOrgDetails(orgName: string): Observable<UserOrg> {
     return this.http.get<UserOrg>(`${this.url}orgs/${orgName}`).pipe(
       retry(1),
@@ -92,11 +93,11 @@ export class GhUserService {
     )
   }
 
-  limit(){
-    return this.http.get('https://api.github.com/rate_limit').pipe(
-      tap( val => console.log(val))
-    );
-  }
+  // limit(): Observable<any> {
+  //   return this.http.get('https://api.github.com/rate_limit').pipe(
+  //     tap(val => console.log(val))
+  //   );
+  // }
 
   private handleError(error: HttpErrorResponse) {
     let msg;

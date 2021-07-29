@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {GhUserService} from "../../../shared/services/gh-user.service";
-import {combineLatest, Observable, of} from "rxjs";
+import {combineLatest, Observable} from "rxjs";
 import {User} from "../../../shared/models/user.interface";
-import {concatMap, map, switchMap} from "rxjs/operators";
+import {map, switchMap} from "rxjs/operators";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {UserOrg} from "../../../shared/models/user-org.interface";
 import {UserRepo} from "../../../shared/models/user-repo.interface";
@@ -18,7 +18,8 @@ export class UserDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private userService: GhUserService) {}
+              private userService: GhUserService) {
+  }
 
   ngOnInit(): void {
     this.user$ = this.route.paramMap.pipe(
@@ -44,8 +45,8 @@ export class UserDetailsComponent implements OnInit {
     );
   }
 
-  goToUsers(user: User) {
-    const username = user ? user.login : null;
-    this.router.navigate(['/users', {username: username}]);
+  goToUsers(): void {
+    this.router.navigate(['/users']);
   }
 }
+

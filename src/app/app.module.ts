@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { UserComponent } from './components/users/user/user.component';
-import { UserDetailsComponent } from './components/users/user-details/user-details.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {UserComponent} from './components/users/user/user.component';
+import {UserDetailsComponent} from './components/users/user-details/user-details.component';
 import {HttpClientModule} from "@angular/common/http";
-import { UsersComponent } from './components/users/users/users.component';
+import {UsersComponent} from './components/users/users/users.component';
 import {FormsModule} from "@angular/forms";
-import { SearchComponent } from './components/search/search.component';
+import {SearchComponent} from './components/search/search.component';
+import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -16,15 +17,17 @@ import { SearchComponent } from './components/search/search.component';
     UserComponent,
     UserDetailsComponent,
     UsersComponent,
-    SearchComponent
+    SearchComponent,
+    PageNotFoundComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

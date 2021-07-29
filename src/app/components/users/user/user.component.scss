@@ -8,30 +8,32 @@
 .user {
   width: 100%;
   padding: 20px;
-  //min-width: 500px;
   border-radius: 5px;
-  border: 1px solid lightgray;
-  box-shadow: 0 3px 8px lightgray;
-  @include text-style(16px, 500, black);
+  border: 1px solid $secondary;
+  box-shadow: 0 3px 8px $shadow;
+  @include text-style(16px, 500);
   transition: all 0.2s ease-in-out;
   cursor: context-menu;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px gray;
+    box-shadow: 0 4px 10px rgba(1, 42, 45, 0.5);
   }
 }
 
 .user-info {
   padding: 10px;
   width: 50%;
-  a{
+
+  a {
     padding-bottom: 10px;
     @include text-style(20px, 500);
     word-break: break-all;
   }
+
   div {
-    @include text-style(16px, 500);
+    font-style: italic;
+    @include text-style(16px, 400, $secondary);
   }
 }
 
@@ -40,21 +42,27 @@
   width: 50%;
 
   & > div {
-    @include text-style(18px, 600, black);
-    padding-bottom: 5px;
+    @include text-style(18px, 600);
+    padding-bottom: 10px;
   }
 
   a {
+    padding: 5px 10px;
+    margin: 2px 0;
     max-width: 90%;
+    text-decoration: none;
     text-overflow: ellipsis;
     overflow-x: hidden;
     white-space: nowrap;
-    padding: 5px 0;
+    border-radius: 50px;
+    border: 1px solid $primary;
+    @include text-style(16px, 600, $primary);
   }
 }
 
 .user-avatar {
   min-width: fit-content;
+
   img {
     border-radius: 5px;
     width: 150px;
@@ -116,7 +124,7 @@
     align-items: center;
   }
 
-  .user-repos{
+  .user-repos {
     width: 100%;
     display: flex;
     flex-direction: column;

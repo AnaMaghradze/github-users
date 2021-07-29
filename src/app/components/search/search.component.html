@@ -1,7 +1,9 @@
 <div class="search">
   <div class="search-bar">
     <input #searchInput type="text" [(ngModel)]="searchText" placeholder="Search user from GitHub">
-    <button (click)="search()">Find</button>
+    <button (click)="onSearch()">
+      <span class="material-icons-round">search</span>
+    </button>
   </div>
   <div class="search-history" *ngIf="lastSearches.length">
     <div>Last Searches</div>

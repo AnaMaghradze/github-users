@@ -1,17 +1,24 @@
 <div *ngIf="user$ | async as user" class="user-details">
-  <button (click)="goToUsers(user)">Back</button>
-  <div>
-    <h2 class="username-wrapper title">{{user.login}}</h2>
-    <div class="img-wrapper"><img [src]="user.avatar_url" alt="Avatar"></div>
+  <button (click)="goToUsers()" class="back-btn">
+    <span class="material-icons-round">arrow_back_ios</span>
+    <span>Back</span>
+  </button>
+  <div *ngIf="user">
+    <div class="username-wrapper">
+      <h2 class="title"> {{user.login}}</h2>
+    </div>
+    <div class="img-wrapper">
+      <img [src]="user.avatar_url" alt="Avatar">
+    </div>
     <div class="details-wrapper">
       <div>
-        <h3>{{ user.name || 'No name to display' }}</h3>
+        <a [href]="user.html_url" target="_blank">{{ user.name || user.login }}</a>
         <p>{{ user.type }}</p>
       </div>
       <div>
         <h3 class="title">User Repos</h3>
         <ng-container *ngFor="let repo of user.repos">
-          <a *ngIf="repo" [href]="repo.html_url" target="_blank">{{ repo.name }}</a>
+          <a *ngIf="repo" [href]="repo.html_url" target="_blank" class="user-repos">{{ repo.name }}</a>
         </ng-container>
         <p *ngIf="!user.repos?.length"> No repos to display </p>
       </div>
