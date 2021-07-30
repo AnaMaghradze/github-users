@@ -14,8 +14,12 @@
         </li>
       </ul>
     </div>
-    <div class="content" [ngClass]="{'list-view' : view === 'list', 'grid-view' : view === 'grid'}">
-      <div *ngFor="let user of users$ | async ">
+    <div class="content"
+         *ngIf="users$ | async as users"
+         [ngClass]="{'list-view' : view === 'list', 'grid-view' : view === 'grid'}"
+         [@listAnimation]="users.length"
+    >
+      <div *ngFor="let user of users">
         <app-user [view]="view" [user]="user"></app-user>
       </div>
     </div>

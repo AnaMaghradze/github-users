@@ -31,10 +31,9 @@ export class SearchComponent implements OnInit {
   // update array of last searches saved in localStorage
   updateSearchHistory(): void {
     if (this.lastSearches[this.lastSearches.length - 1] != this.searchText) {
-      if (this.lastSearches.length < 3) {
-        this.lastSearches.push(this.searchText);
+      if (this.lastSearches.length >= 3) {
+        this.lastSearches.shift();
       }
-      this.lastSearches.shift();
       this.lastSearches.push(this.searchText);
     }
     localStorage.setItem("lastSearches", JSON.stringify(this.lastSearches));

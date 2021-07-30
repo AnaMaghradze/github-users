@@ -1,26 +1,27 @@
 import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {GhUserService} from "../../../shared/services/gh-user.service";
-import {User} from "../../../shared/models/user.interface";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {UserComponent} from "../user/user.component";
+import {listAnimation} from "../../../shared/animations/list.animation";
+import {UserView} from "../../../shared/models/user-view.model";
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  styleUrls: ['./users.component.scss'],
+  animations: [listAnimation]
 })
 export class UsersComponent implements OnInit {
   @ViewChildren(UserComponent) listItems!: QueryList<UserComponent>;
   view: 'list' | 'grid' = 'list';
-  users$!: Observable<User[]>;
+  users$!: Observable<UserView[]>;
 
   constructor(private userService: GhUserService, private router: Router) {
   }
 
   ngOnInit(): void {
-    // this.userService.limit().subscribe();
     this.users$ = this.userService.pipeUsers(this.userService.getUsers());
   }
 

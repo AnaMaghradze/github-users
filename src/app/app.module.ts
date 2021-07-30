@@ -10,6 +10,7 @@ import {UsersComponent} from './components/users/users/users.component';
 import {FormsModule} from "@angular/forms";
 import {SearchComponent} from './components/search/search.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

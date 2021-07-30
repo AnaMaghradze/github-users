@@ -2,13 +2,13 @@ import {TestBed} from '@angular/core/testing';
 
 import {GhUserService} from './gh-user.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {User} from "../models/user.interface";
+import {User} from "../models/user.model";
 import {HttpClient} from "@angular/common/http";
-import {UserOrg} from "../models/user-org.interface";
-import {UserRepo} from "../models/user-repo.interface";
+import {UserOrg} from "../models/user-org.model";
+import {UserRepo} from "../models/user-repo.model";
+import {UserOrgView} from "../models/user-org-view.model";
 
 describe('GhUserService', () => {
-  let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
   let userService: GhUserService;
   const expectedUsers = [
@@ -546,7 +546,7 @@ describe('GhUserService', () => {
   // ************  test getUserOrgDetails() ************
   describe('getUserOrgDetails', () => {
     const url = (orgName: string) => `${userService.url}orgs/${orgName}`;
-    const testOrg: UserOrg = {
+    const testOrg: UserOrgView = {
       "login": "toml-lang",
       "id": 7966854,
       "node_id": "MDEyOk9yZ2FuaXphdGlvbjc5NjY4NTQ=",

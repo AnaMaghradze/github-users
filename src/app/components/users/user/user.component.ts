@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {User} from "../../../shared/models/user.interface";
+import {UserView} from "../../../shared/models/user-view.model";
 
 @Component({
   selector: 'app-user',
@@ -7,6 +7,6 @@ import {User} from "../../../shared/models/user.interface";
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-  @Input() user!: User;
+  @Input() user!: UserView;
   @Input() view: "list" | "grid" = "list";
 }
