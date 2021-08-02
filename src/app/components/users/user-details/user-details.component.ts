@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GhUserService} from "../../../shared/services/gh-user.service";
 import {combineLatest, Observable} from "rxjs";
-import {map, switchMap} from "rxjs/operators";
+import {map, mergeMap, switchMap} from "rxjs/operators";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {UserOrg} from "../../../shared/models/user-org.model";
 import {UserRepo} from "../../../shared/models/user-repo.model";
@@ -28,19 +28,18 @@ export class UserDetailsComponent implements OnInit {
         return this.userService.getUser(params.get('username')!)
       }),
       // get repos for each user
-      switchMap((user: UserView) => this.userService.getUserRepos(user.login).pipe(
+      mergeMap((user: UserView) => this.userService.getUserRepos(user.login).pipe(
         map((repos: UserRepo[]) => {
-          user.repos = repos.sort(
-            (a, b) => a.name.length - b.name.length).slice(0, 3);
-          return user;
+          const firstThreeRepos = repos.slice(0, 3).sort(
+            (a, b) => a.name.length - b.name.length);
+          return {...user, repos: firstThreeRepos};
         })
       )),
       // get orgs for each user
-      switchMap((user: UserView) => this.userService.getUserOrgs(user.login).pipe(
+      mergeMap((user: UserView) => this.userService.getUserOrgs(user.login).pipe(
         map((orgs: UserOrg[]) => {
           this.orgs$ = combineLatest(orgs.slice(0, 3).map((org: UserOrg) => this.userService.getUserOrgDetails(org.login)));
-          user.orgs = orgs;
-          return user;
+          return {...user, orgs};
         }),
       ))
     );

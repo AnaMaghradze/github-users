@@ -1,4 +1,8 @@
-<div class="user" [ngClass]="{'list-view' : view === 'list', 'grid-view' : view === 'grid'}">
+<div
+  *ngIf="user$ | async as user"
+  class="user"
+  [ngClass]="{'list-view' : view === 'list', 'grid-view' : view === 'grid'}"
+>
   <div class="user-avatar">
     <img [src]="user.avatar_url" alt="Avatar">
   </div>

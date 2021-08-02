@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {User} from "../models/user.model";
-import {combineLatest, Observable, throwError} from "rxjs";
-import {catchError, map, retry, switchMap} from "rxjs/operators";
+import {Observable, throwError} from "rxjs";
+import {catchError, retry} from "rxjs/operators";
 import {environment} from "../../../environments/environment";
 import {UserRepo} from "../models/user-repo.model";
 import {UserOrg} from "../models/user-org.model";
@@ -63,27 +63,6 @@ export class GhUserService {
     return this.http.get<User[]>(`${this.url}search/users?q=${queryStr}&per_page=5`).pipe(
       retry(1),
       catchError(this.handleError),
-    )
-  }
-
-  // Pipe users observable to transform each user to contain more details and array of repos
-  pipeUsers(obs: Observable<User[]>): Observable<UserView[]> {
-    return obs.pipe(
-      // get more details for each user
-      switchMap((users: User[]) =>
-        combineLatest(users.map((user: User) => this.getUser(user.login)))
-      ),
-      // get repos for each user
-      switchMap((users: UserView[]) =>
-        combineLatest(users.map((user: UserView) => {
-          return this.getUserRepos(user.login).pipe(
-            map((repos: UserRepo[]) => {
-                user.repos = repos.slice(0, 3).sort((a, b) => a.name.length - b.name.length)
-                return user;
-              }
-            )
-          )
-        })))
     )
   }
 

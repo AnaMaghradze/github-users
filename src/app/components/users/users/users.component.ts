@@ -5,7 +5,7 @@ import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {UserComponent} from "../user/user.component";
 import {listAnimation} from "../../../shared/animations/list.animation";
-import {UserView} from "../../../shared/models/user-view.model";
+import {User} from "../../../shared/models/user.model";
 
 @Component({
   selector: 'app-users',
@@ -16,17 +16,17 @@ import {UserView} from "../../../shared/models/user-view.model";
 export class UsersComponent implements OnInit {
   @ViewChildren(UserComponent) listItems!: QueryList<UserComponent>;
   view: 'list' | 'grid' = 'list';
-  users$!: Observable<UserView[]>;
+  users$!: Observable<User[]>;
 
   constructor(private userService: GhUserService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.users$ = this.userService.pipeUsers(this.userService.getUsers());
+    this.users$ = this.userService.getUsers();
   }
 
   findUsers(searchText: string): void {
-    this.users$ = this.userService.pipeUsers(this.userService.searchUsers(searchText).pipe(
+    this.users$ = this.userService.searchUsers(searchText).pipe(
       map((resp: any) => {
         if (resp.items.length === 0) {
           // if no user found application redirects the not found page
@@ -35,9 +35,10 @@ export class UsersComponent implements OnInit {
           // if you search for a specific user application redirects the user page
           this.router.navigate(['/users', resp.items[0].login])
         }
+        // returns array of users or empty array
         return resp.items
       }),
-    ))
+    )
   }
 
   viewList(): void {
