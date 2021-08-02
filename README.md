@@ -1,4 +1,8 @@
-# Development server
+# Github Users
+  
+  See application [here](https://anamaghradze.github.io/github-users/).
+  
+## Development server
 
   Run `npm start` for a dev server. Navigate to `http://localhost:4200/`
 
